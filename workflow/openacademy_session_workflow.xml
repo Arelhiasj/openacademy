@@ -13,8 +13,7 @@
             <field name="name">Set session to Draft</field>
             <field name="model_id" ref="model_openacademy_session"/>
             <field name="code">
-recs = self.browse(cr, uid, context['active_ids'], context=context)
-recs.action_draft()
+model.search([('id', 'in', context['active_ids'])]).action_draft()
             </field>
         </record>
 
@@ -22,8 +21,7 @@ recs.action_draft()
             <field name="name">Set session to Confirmed</field>
             <field name="model_id" ref="model_openacademy_session"/>
             <field name="code">
-recs = self.browse(cr, uid, context['active_ids'], context=context)
-recs.action_confirm()
+model.search([('id', 'in', context['active_ids'])]).action_confirm()
             </field>
         </record>
 
@@ -31,8 +29,7 @@ recs.action_confirm()
             <field name="name">Set session to Done</field>
             <field name="model_id" ref="model_openacademy_session"/>
             <field name="code">
-recs = self.browse(cr, uid, context['active_ids'], context=context)
-recs.action_done()
+model.search([('id', 'in', context['active_ids'])]).action_done()
             </field>
         </record>
 
@@ -41,7 +38,7 @@ recs.action_done()
             <field name="name">Draft</field>
             <field name="wkf_id" ref="wkf_session"/>
             <field name="flow_start" eval="True"/>
-            <field name="kind">function</field>
+            <field name="kind">dummy</field>
             <field name="action"></field>
             <field name="action_id" ref="set_session_to_draft"/>
         </record>
@@ -49,7 +46,7 @@ recs.action_done()
         <record model="workflow.activity" id="activity_confirmed">
             <field name="name">Confirmed</field>
             <field name="wkf_id" ref="wkf_session"/>
-            <field name="kind">function</field>
+            <field name="kind">dummy</field>
             <field name="action"></field>
             <field name="action_id" ref="set_session_to_confirmed"/>
         </record>
@@ -57,7 +54,7 @@ recs.action_done()
         <record model="workflow.activity" id="activity_done">
             <field name="name">Done</field>
             <field name="wkf_id" ref="wkf_session"/>
-            <field name="kind">function</field>
+            <field name="kind">dummy</field>
             <field name="action"></field>
             <field name="action_id" ref="set_session_to_done"/>
         </record>
