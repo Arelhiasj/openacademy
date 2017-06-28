@@ -43,6 +43,7 @@
             </field>
         </record>
 
+        <!-- Vista tree-->
         <record model="ir.ui.view" id="session_tree_view">
             <field name="name">session.tree</field>
             <field name="model">openacademy.session</field>
@@ -54,6 +55,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- vista calendario -->
         <record model="ir.ui.view" id="session_calendar_view">
            <field name="name"> session.calendar</field>
            <field name="model">openacademy.session</field>
@@ -66,7 +69,8 @@
                </calendar>
            </field>
         </record>
-
+ 
+        <!-- vista gantt -->
         <record model ="ir.ui.view" id="session_gantt_view">
            <field name="name">session.gantt</field>
            <field name="model">openacademy.session</field>
@@ -81,6 +85,7 @@
            </field>
         </record>
 
+        <!--Vista graph -->
         <record model ="ir.ui.view" id="session_graph_view">
            <field name="name">session.graph</field>
            <field name="model">openacademy.session</field>
@@ -92,6 +97,7 @@
            </field>
         </record>
 
+        <!-- vista kanban-->
         <record model="ir.ui.view" id="view_openacad_session_kanban">
             <field name="name">openacad.session.kanban</field>
             <field name="model">openacademy.session</field>
@@ -138,7 +144,7 @@
             </field>
         </record>
 
-
+        <!-- Inicializacion de las vistas -->
         <record model="ir.actions.act_window" id="session_list_action">
             <field name="name">Sessions</field>
             <field name="res_model">openacademy.session</field>
@@ -146,13 +152,7 @@
             <field name="view_mode">kanban,tree,form,calendar,graph,gantt</field>
         </record>
 
-        <record model="ir.actions.act_window" id="session_list_action">
-            <field name="name">Sessions</field>
-            <field name="res_model">openacademy.session</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">kanban,tree,form,calendar,graph,gantt</field>
-        </record>
-
+        <!-- Item en el menu -->
         <menuitem id="session_menu" name="Sessions"
                   parent="openacademy_menu"
                   action="session_list_action"/>

@@ -18,6 +18,7 @@ class Session(models.Model):
     course_id = fields.Many2one('openacademy.course',
          ondelete='cascade', string="Course", required=True)
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
+
     taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
     active = fields.Boolean(default=True)
     end_date = fields.Date(string="EndDate", store=True,
@@ -27,6 +28,8 @@ class Session(models.Model):
     attendees_count = fields.Integer(
        string="Attendees count", compute='_get_attendees_count', store=True)
     color = fields.Integer()
+
+    #Workflow
     state = fields.Selection([
                              ('draft', 'Draft'),
                              ('confirmed', 'Confirmed'),
@@ -59,6 +62,7 @@ class Session(models.Model):
                 },
             }
 
+    # Verifica que el número de asientos sea menor o igual al numero de asistentes
     @api.one
     @api.constrains('instructor_id', 'attendee_ids')
     def _check_instructor_not_in_attendees(self):
@@ -90,6 +94,8 @@ class Session(models.Model):
             start_date = fields.Datetime.from_string(r.start_date)
             end_date = fields.Datetime.from_string(r.end_date)
             r.duration = (end_date - start_date).days + 1
+
+    #Definición de las funciones para el campo hours
     @api.one
     @api.depends('duration')
     def _get_hours(self):
